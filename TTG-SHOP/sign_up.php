@@ -1,4 +1,5 @@
 <?php 
+require_once '../../includes/config_session.inc.php';
 require_once 'includes/signup/sign_up_view.inc.php';
 include_once "header.php";
 ?>

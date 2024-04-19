@@ -1,16 +1,17 @@
 <?php
-include_once "../../header.php";
+require_once '../../includes/config_session.inc.php';
 require_once '../../includes/profile/profile_view.inc.php';
 
 if(!isset($_SESSION["user_id"]) || $_SESSION["user_group_id"] != 2)
     header("Location: ../../index.php");
+include_once "../../header.php";
 ?>
 
         <main class="main">
             <div class="container-profile">
                 <div id="profile-panel" class="profile-panel">
                     <h4>Dodaj Produkt</h4>
-                    <form action="/TTG-SHOP/includes/profile/profile.inc.php" method="post" enctype="multipart/form-data">
+                    <form action="/includes/profile/profile.inc.php" method="post" enctype="multipart/form-data">
                         <div class="input-wraper">
                                 <div class="label-input">
                                     <label for="product">Nazwa Produktu:</label>
@@ -56,7 +57,7 @@ if(!isset($_SESSION["user_id"]) || $_SESSION["user_group_id"] != 2)
                         <li><button>Lista Zamówień</button></li>
                         <li><a href="profile_employee_add_prod.php"><button>Dodaj Produkt</button></a></li>
                         <li>
-                            <form action="/TTG-SHOP/includes/profile/logout.inc.php" method="post">
+                            <form action="/includes/profile/logout.inc.php" method="post">
                             <button>Wyloguj</button>
                             </form>
                         </li>

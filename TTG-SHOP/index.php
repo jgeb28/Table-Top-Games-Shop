@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/config_session.inc.php';
 include_once "header.php";
 ?>
         <main class="main">

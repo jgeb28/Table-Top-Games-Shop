@@ -33,9 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: /login.php");
             die();
         }
+        session_destroy();
         $newSessionId = session_create_id();
         $sessionId = $newSessionId . "_" . $result["user_id"];
         session_id($sessionId);
+        session_start();
         
         $_SESSION["user_id"] = $result["user_id"];
         $_SESSION["user_name"] = htmlspecialchars($result["user_name"]);

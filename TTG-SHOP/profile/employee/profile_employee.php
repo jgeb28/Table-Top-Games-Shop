@@ -1,9 +1,10 @@
 <?php
-include_once "../../header.php";
+require_once 'includes/config_session.inc.php';
 require_once '../../includes/profile/profile_view.inc.php';
 
 if(!isset($_SESSION["user_id"]) || $_SESSION["user_group_id"] != 2)
     header("Location: ../../index.php");
+include_once "../../header.php";
 ?>
 
         <main class="main">
@@ -16,7 +17,7 @@ if(!isset($_SESSION["user_id"]) || $_SESSION["user_group_id"] != 2)
                         <li><button>Lista Zamówień</button></li>
                         <li><a href="profile_employee_add_prod.php"><button>Dodaj Produkt</button></a></li>
                         <li>
-                            <form action="/TTG-SHOP/includes/profile/logout.inc.php" method="post">
+                            <form action="/includes/profile/logout.inc.php" method="post">
                             <button>Wyloguj</button>
                             </form>
                         </li>
