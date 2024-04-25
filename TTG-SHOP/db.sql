@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS products (
     product_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(40) NOT NULL,
     product_price FLOAT NOT NULL,
-    product_desctription VARCHAR(400) NOT NULL,
+    product_quantity INT NOT NULL,
+    product_description VARCHAR(400) NOT NULL,
     category_id INT NOT NULL,
     FOREIGN KEY(category_id) REFERENCES CATEGORIES(category_id)
 );

@@ -1,11 +1,11 @@
 <?php
 require_once '../../includes/config_session.inc.php';
-if (!isset($_SESSION["user_id"]) || $_SESSION["user_group_id"] != 3)
+if (!isset($_SESSION["user_id"]) || $_SESSION["user_group_id"] != 2)
     header("Location: ../../index.php");
 
-require_once "../../includes/profile/profile_admin_view.inc.php";
+require_once "../../includes/profile/profile_emp_view.inc.php";
 require_once "../../includes/dbh.inc.php";
-require_once "../../includes/profile/profile_admin_list_users.inc.php";
+require_once "../../includes/profile/profile_emp_list_products.inc.php";
 include_once "../../header.php";
 ?>
 <main class="main">
@@ -13,31 +13,33 @@ include_once "../../header.php";
         <div class="profile-panel">
             <div class="list-wrapper">
                 <div class="list-search-box">
-                    <form action="/includes/profile/profile_admin.inc.php" method="post">
+                    <form action="/includes/profile/profile_emp.inc.php" method="post">
                         <div class="search_box">
-                            <input type="text" name="search" placeholder="Wyszukiwanie Kont...">
+                            <input type="text" name="search" placeholder="Wyszukiwanie Prod...">
                             <button name="search_user" id="search_box_button" type="submit"><img src="/images/search_icon.svg"></button>
                         </div>
                     </form>
                 </div>
                 <table>
                     <tr id="tr-th">
-                        <th>User_ID</th>
-                        <th>User_Name</th>
-                        <th>User_Group</th>
-                        <th>User_E-mail</th>
+                        <th>Prod_ID</th>
+                        <th>Prod_Name</th>
+                        <th>Prod_Cat</th>
+                        <th>Prod_Qty</th>
+                        <th>Prod_Price</th>
                         <th></th>
                         <th></th>
                     </tr>
-                    <?php display_users(); ?>
+                    <?php display_products(); ?>
                 </table>
             </div>
             <?php display_success(); ?>
         </div>
         <div class="profile-panel-menu">
             <ul>
-                <li><a href="profile_admin_add_acc.php"><button>Utwórz konto</button></a></li>
-                <li><a href="profile_admin_list_users.php"><button>Wyświetl użytkowników</button></a></li>
+                <li><a href="profile_emp_list_products.php"><button>Lista Produktów</button></a></li>
+                <li><button>Lista Zamówień</button></li>
+                <li><a href="profile_employee_add_prod.php"><button>Dodaj Produkt</button></a></li>
                 <li>
                     <form action="/includes/profile/logout.inc.php" method="post">
                         <button>Wyloguj</button>

@@ -83,7 +83,7 @@ function display_users() {
             $user_email = $result["user_email"];
             echo '
             <tr>
-            <form action="/TTG-SHOP/includes/profile/profile_admin.inc.php" method="post">
+            <form action="/includes/profile/profile_admin.inc.php" method="post">
             <input type="hidden"  name="user_id" value="' . $user_id . '">
             <input type="hidden"  name="user_name" value="' . $user_name . '">
             <input type="hidden"  name="group_name" value="' . $group_name . '">

@@ -11,20 +11,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         require_once '../dbh.inc.php';
         require_once 'sign_up_model.inc.php';
         require_once 'sign_up_contr.inc.php';
-        
+
         //ERROR HANDLERS
         $errors = [];
 
-        if(is_input_empty($username, $pwd, $email)) {
+        if (is_input_empty($username, $pwd, $email)) {
             $errors["empty_input"] = "Zapełnij wszystkie pola";
         }
-        if(is_email_invalid($email)) {
+        if (is_email_invalid($email)) {
             $errors["invalid_email"] = "Niepoprawny adres e-mail";
         }
-        if(is_username_taken($pdo, $username)) {
+        if (is_username_taken($pdo, $username)) {
             $errors["username_taken"] = "Podana nazwa użytkownika jest już zajęta";
         }
-        if(is_email_taken($pdo, $email)) {
+        if (is_email_taken($pdo, $email)) {
             $errors["email_taken"] = "Podany e-mail jest już zarejestrowany";
         }
 
@@ -51,11 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt = null;
 
         die();
-
     } catch (PDOException $e) {
         die("Querry Failed: " . $e->getMessage());
     }
-
 } else {
     header("Location: ../../sign_up.php");
     die();
