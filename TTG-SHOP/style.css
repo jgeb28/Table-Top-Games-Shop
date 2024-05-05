@@ -427,6 +427,11 @@ body {
     background-color: hsl(0, 0%, 100%);
     width: 250px;
 }
+.list-button {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    background-color: hsl(338, 100%, 25%);
+}
 
 .list-wrapper {
     width: 1170px;
@@ -439,11 +444,8 @@ body {
 
 .list-wrapper table {
     width: 100%;
-    background-color: hsl(265, 100%, 91%); 
-}
-
-.list-wrapper table tr {
-    border-bottom: 2px solid black;
+    background-color: hsl(265, 100%, 91%);
+    border-collapse: collapse;
 }
 
 .list-wrapper table td {
@@ -456,10 +458,26 @@ body {
     font-size: 16px;
     font-weight: normal;
     padding: 3px;
+    cursor: pointer;
+    position: relative;
 }
 
-#tr-th {
-    background-color: hsl(264, 55%, 40%);
+.list-wrapper table th::after {
+   content: "";
+   position: absolute;
+   top: 50%;
+   right: 8px; 
+   transform: translateY(-50%);
+}
+
+.list-wrapper table th.asc::after {
+    content: "\25B2"; 
+    float: right;
+}
+
+.list-wrapper table th.desc:after {
+    content: "\25BC";
+    float: right;
 }
 
 .list-search-box {

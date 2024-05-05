@@ -20,12 +20,12 @@ include_once "../../header.php";
                         </div>
                     </form>
                 </div>
-                <table>
+                <table id="user-table">
                     <tr id="tr-th">
-                        <th>User_ID</th>
-                        <th>User_Name</th>
-                        <th>User_Group</th>
-                        <th>User_E-mail</th>
+                        <th onclick="sortTable('user-table',0,this)" >User_ID</th>
+                        <th onclick="sortTable('user-table',1,this)" >User_Name</th>
+                        <th onclick="sortTable('user-table',2,this)" >User_Group</th>
+                        <th onclick="sortTable('user-table',3,this)" >User_E-mail</th>
                         <th></th>
                         <th></th>
                     </tr>

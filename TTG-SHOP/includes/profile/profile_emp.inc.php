@@ -7,6 +7,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         require_once 'profile_emp_contr.inc.php';
         require_once '../config_session.inc.php';
 
+        if (isset($_POST['search_products'])) {
+
+            $search = $_POST["search"];
+            $results = search_products($pdo, $search);
+
+            require_once '../config_session.inc.php';
+
+            $_SESSION["products_list"] = $results;
+
+            header("Location: /profile/employee/profile_emp_list_products.php?");
+
+            $pdo = null;
+            $stmt = null;
+
+            die();
+        }
+
         if (isset($_POST['prod_submit'])) {
             $product = $_POST["product"];
             $price = $_POST["price"];

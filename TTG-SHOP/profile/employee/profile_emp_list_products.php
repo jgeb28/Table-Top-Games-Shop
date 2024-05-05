@@ -16,17 +16,17 @@ include_once "../../header.php";
                     <form action="/includes/profile/profile_emp.inc.php" method="post">
                         <div class="search_box">
                             <input type="text" name="search" placeholder="Wyszukiwanie Prod...">
-                            <button name="search_user" id="search_box_button" type="submit"><img src="/images/search_icon.svg"></button>
+                            <button name="search_products" id="search_box_button" type="submit"><img src="/images/search_icon.svg"></button>
                         </div>
                     </form>
                 </div>
-                <table>
+                <table id="prod-table">
                     <tr id="tr-th">
-                        <th>Prod_ID</th>
-                        <th>Prod_Name</th>
-                        <th>Prod_Cat</th>
-                        <th>Prod_Qty</th>
-                        <th>Prod_Price</th>
+                        <th onclick="sortTable('prod-table',0,this)">Prod_ID</th>
+                        <th onclick="sortTable('prod-table',1,this)">Prod_Name</th>
+                        <th onclick="sortTable('prod-table',2,this)">Prod_Cat</th>
+                        <th onclick="sortTable('prod-table',3,this)">Prod_Qty</th>
+                        <th onclick="sortTable('prod-table',4,this)">Prod_Price</th>
                         <th></th>
                         <th></th>
                     </tr>

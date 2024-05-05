@@ -48,10 +48,10 @@ function display_products() {
              ";
              echo '
                  <td>
-                     <button type="submit" name="edit_product_menu">Edytuj</button>
+                     <button class="list-button" type="submit" name="edit_product_menu">Edytuj</button>
                  </td>
                  <td>
-                     <button type="submit" name="delete_product">Usuń</button>
+                     <button class="list-button" type="submit" name="delete_product">Usuń</button>
                  </td>
                  </form>
              </tr>

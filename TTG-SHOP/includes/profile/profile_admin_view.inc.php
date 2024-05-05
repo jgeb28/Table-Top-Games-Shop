@@ -98,10 +98,10 @@ function display_users() {
             ";
             echo '
                 <td>
-                    <button type="submit" name="edit_user_menu">Edytuj</button>
+                    <button class="list-button" type="submit" name="edit_user_menu">Edytuj</button>
                 </td>
                 <td>
-                    <button type="submit" name="delete_user">Usuń</button>
+                    <button class="list-button" type="submit" name="delete_user">Usuń</button>
                 </td>
                 </form>
             </tr>

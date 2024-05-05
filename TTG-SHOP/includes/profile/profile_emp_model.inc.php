@@ -64,3 +64,19 @@ function get_products(object $pdo)
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function search_products(object $pdo, string $search)
+{
+    $query = "SELECT products.product_name,
+    products.product_id, products.product_price, products.product_quantity , products.category_id,
+    categories.category_name
+    FROM products
+    JOIN categories ON products.category_id = categories.category_id
+    WHERE products.product_name LIKE :search;";
+    $stmt = $pdo->prepare($query);
+    $searchParam = "%$search%";
+    $stmt->bindParam(':search', $searchParam);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
