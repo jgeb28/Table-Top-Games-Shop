@@ -24,7 +24,7 @@ function is_input_empty_img(
     int $imageSize
 ) {
     if (
-        $iconSize == 0  || $imageSize == 0
+        $iconSize == 0 && $imageSize == 0
     ) {
         return true;
     } else {

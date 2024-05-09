@@ -130,8 +130,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 "product_description" => $result["product_description"],
             ];
 
-            require_once '../config_session.inc.php';
-
             $_SESSION["edit_data"] = $editData;
 
             header("Location: /profile/employee/profile_employee_edit_prod.php");
