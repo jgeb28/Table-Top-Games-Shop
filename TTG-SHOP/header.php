@@ -15,8 +15,8 @@ require_once 'includes/navbar/navbar_view.inc.php';
 <body>
     <header class="navbar">
         <ul>
-            <li id="logo-big" class="logo"><a href="/index.php"><img src="/images/logo2.svg"></a></li>
-            <li id="logo-small" class="logo"><a href="/index.php"><img src="/images/logo2small.svg"></a></li>
+            <li id="logo-big" class="logo"><a href="/index.php"><img src="/images/logo2.drawio.svg"></a></li>
+            <li id="logo-small" class="logo"><a href="/index.php"><img src="/images/logo2.drawio.small.svg"></a></li>
             <li class="search_box">
                 <input type="text" placeholder="Wyszukiwanie...">
                 <button type="submit"><img src="/images/search_icon.svg"></button>

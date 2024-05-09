@@ -4,6 +4,8 @@ require_once '../../includes/profile/profile_admin_view.inc.php';
 
 if (!isset($_SESSION["user_id"]) || $_SESSION["user_group_id"] != 3)
     header("Location: /index.php");
+if(!isset($_SESSION["edit_data"]))
+    header("Location: /profile/admin/profile_admin_list_users.php");
 include_once "../../header.php";
 ?>
 

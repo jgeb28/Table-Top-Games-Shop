@@ -19,6 +19,49 @@ function check_product_adding_errors() {
    }
 }
 
+function adding_prod_edit_inputs() {
+    if (isset($_SESSION["edit_data"])) {
+        echo '
+        <input type="hidden"  name="product_id" value="' . $_SESSION["edit_data"]["product_id"] . '">
+        <div class="label-input">
+            <label for="product">Nazwa Produktu:</label>
+            <input type="text" name="product" value="' . $_SESSION["edit_data"]["product_name"] . '">
+        </div>
+        <div class="label-input">
+            <label for="category">Kategoria:</label>
+            <select name="category">
+                <option '; if($_SESSION["edit_data"]["category_id"] == 1 ){ echo 'selected';} echo' value="1">karciane</option>
+                <option '; if($_SESSION["edit_data"]["category_id"] == 2 ){ echo 'selected';} echo' value="2">logiczne</option>
+                <option '; if($_SESSION["edit_data"]["category_id"] == 3 ){ echo 'selected';} echo' value="3">przygodowe</option>
+                <option '; if($_SESSION["edit_data"]["category_id"] == 4 ){ echo 'selected';} echo' value="4">rodzinne</option>
+                <option '; if($_SESSION["edit_data"]["category_id"] == 5 ){ echo 'selected';} echo' value="5">strategiczne</option>
+                <option '; if($_SESSION["edit_data"]["category_id"] == 6 ){ echo 'selected';} echo' value="6">imprezowe</option>
+                <option '; if($_SESSION["edit_data"]["category_id"] == 7 ){ echo 'selected';} echo' value="7">akcesoria</option>
+            </select>
+        </div>
+        <div class="label-input">
+            <label for="icon">Miniaturka:</label>
+            <input type="file" name="icon">
+        </div>
+        <div class="label-input">
+            <label for="image">Szczegółowe zdjęcie:</label>
+            <input type="file" name="image">
+        </div>
+        <p id="edit-paragraph">*dodaj dwa obrazy by zmienić</p>
+        <div class="label-input">
+            <label for="price">Cena produktu:</label>
+            <input type="number" name="price" step="0.01" min="0" value="' . $_SESSION["edit_data"]["product_price"] . '">
+        </div>
+        <div class="label-input">
+            <label for="ilość produktów">Ilość sztuk produktu:</label>
+            <input type="number" name="quantity" min="1" value="' . $_SESSION["edit_data"]["product_quantity"] . '">
+        </div>
+        <textarea name="description" rows=15 cols=50 maxlength=500 placeholder="Opis">' . $_SESSION["edit_data"]["product_description"] . '</textarea>
+        ';
+        unset($_SESSION["edit_data"]);
+    }
+}
+
 function display_products() {
      if(isset($_SESSION["products_list"])) {
          $results = $_SESSION["products_list"];
@@ -26,18 +69,12 @@ function display_products() {
              $product_id = $result["product_id"];
              $product_name = $result["product_name"];
              $category_name = $result["category_name"];
-             $category_id = $result["category_id"];
              $product_quantity = $result["product_quantity"];
              $product_price = $result["product_price"];
              echo '
              <tr>
              <form action="/includes/profile/profile_emp.inc.php" method="post">
              <input type="hidden"  name="product_id" value="' . $product_id . '">
-             <input type="hidden"  name="product_name" value="' . $product_name . '">
-             <input type="hidden"  name="category_name" value="' . $category_name . '">
-             <input type="hidden"  name="category_id" value="' . $category_id . '">
-             <input type="hidden"  name="product_quantity" value="' . $product_quantity . '">
-             <input type="hidden"  name="product_price" value="' . $product_price . '">
              ';
              echo "
                  <td>$product_id</td>

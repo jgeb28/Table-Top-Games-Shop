@@ -28,15 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (isset($_POST['edit_user_menu'])) {
 
             $userId = $_POST["user_id"];
-            $username = $_POST["user_name"];
-            $email = $_POST["user_email"];
-            $group = $_POST["group_id"];
-
+            $result = get_user_data($pdo, $userId);
             $editData = [
                 "user_id" => $userId,
-                "user_name" => $username,
-                "user_email" => $email,
-                "user_group" => $group
+                "user_name" =>  $result["user_name"],
+                "user_email" =>  $result["user_email"],
+                "user_group" =>  $result["group_id"]
             ];
 
             require_once '../config_session.inc.php';
@@ -71,18 +68,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             //ERROR HANDLERS
             $errors = [];
-            if (is_input_empty($username, $pwd, $email)) {
+            if (!is_input_empty($username, $pwd, $email)) {
+                
+                if (is_email_invalid($email)) {
+                    $errors["invalid_email"] = "Niepoprawny adres e-mail";
+                }
+                if (is_username_taken($pdo, $username)) {
+                    $errors["username_taken"] = "Podana nazwa użytkownika jest już zajęta";
+                }
+                if (is_email_taken($pdo, $email)) {
+                    $errors["email_taken"] = "Podany e-mail jest już zarejestrowany";
+                }
+            } else {
                 $errors["empty_input"] = "Zapełnij wszystkie pola";
-            }
-
-            if (is_email_invalid($email)) {
-                $errors["invalid_email"] = "Niepoprawny adres e-mail";
-            }
-            if (is_username_taken($pdo, $username)) {
-                $errors["username_taken"] = "Podana nazwa użytkownika jest już zajęta";
-            }
-            if (is_email_taken($pdo, $email)) {
-                $errors["email_taken"] = "Podany e-mail jest już zarejestrowany";
             }
 
             require_once '../config_session.inc.php';
@@ -117,34 +115,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $userId = $_POST["user_id"];
             $username = $_POST["username"];
-            $oldname = $_POST["old_username"];
             $pwd = $_POST["pwd"];
             $email = $_POST["email"];
-            $oldemail = $_POST["old_email"];
             $group = $_POST['group'];
 
             //ERROR HANDLERS
             $errors = [];
-
-            if ($email != null && is_email_invalid($email)) {
-                $errors["invalid_email"] = "Niepoprawny adres e-mail";
-            }
-            if ($username != null && is_username_taken($pdo, $username)) {
-                $errors["username_taken"] = "Podana nazwa użytkownika jest już zajęta";
-            }
-            if ($email != null && is_email_taken($pdo, $email)) {
-                $errors["email_taken"] = "Podany e-mail jest już zarejestrowany";
+            if(!is_edit_input_empty($username, $email)) {
+                if (is_email_invalid($email)) {
+                    $errors["invalid_email"] = "Niepoprawny adres e-mail";
+                }
+                if (is_username_changed($pdo, $username, $userId) && is_username_taken($pdo, $username)) {
+                    $errors["username_taken"] = "Podana nazwa użytkownika jest już zajęta";
+                }
+                if (is_email_changed($pdo, $email, $userId) && is_email_taken($pdo, $email)) {
+                    $errors["email_taken"] = "Podany e-mail jest już zarejestrowany";
+                }
+            } else {
+                $errors["empty_input"] = "Zapełnij wszystkie pola";
             }
 
             require_once '../config_session.inc.php';
 
             if ($errors) {
                 $_SESSION["errors_adding_acc"] = $errors;
+                $result = get_user_data($pdo, $userId);
                 $editData = [
                     "user_id" => $userId,
-                    "user_name" => $oldname,
-                    "user_email" => $oldemail,
-                    "user_group" => $group
+                    "user_name" =>  $result["user_name"],
+                    "user_email" =>  $result["user_email"],
+                    "user_group" =>  $result["group_id"]
                 ];
                 $_SESSION["edit_data"] = $editData;
 
