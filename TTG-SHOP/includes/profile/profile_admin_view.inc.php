@@ -79,16 +79,11 @@ function display_users() {
             $user_id = $result["user_id"];
             $user_name = $result["user_name"];
             $group_name = $result["group_name"];
-            $group_id = $result["group_id"];
             $user_email = $result["user_email"];
             echo '
             <tr>
-            <form action="/TTG-SHOP/includes/profile/profile_admin.inc.php" method="post">
+            <form action="/includes/profile/profile_admin.inc.php" method="post">
             <input type="hidden"  name="user_id" value="' . $user_id . '">
-            <input type="hidden"  name="user_name" value="' . $user_name . '">
-            <input type="hidden"  name="group_name" value="' . $group_name . '">
-            <input type="hidden"  name="group_id" value="' . $group_id . '">
-            <input type="hidden"  name="user_email" value="' . $user_email . '">
             ';
             echo "
                 <td>$user_id</td>
@@ -98,10 +93,10 @@ function display_users() {
             ";
             echo '
                 <td>
-                    <button type="submit" name="edit_user_menu">Edytuj</button>
+                    <button class="list-button" type="submit" name="edit_user_menu">Edytuj</button>
                 </td>
                 <td>
-                    <button type="submit" name="delete_user">Usuń</button>
+                    <button class="list-button" type="submit" name="delete_user">Usuń</button>
                 </td>
                 </form>
             </tr>
@@ -132,16 +127,14 @@ function adding_acc_edit_inputs() {
         echo '
         <div class="label-input">
             <label for="email">E-mail:</label>
-            <input type="email" name="email" placeholder="Email(Wypełnij by zmienić!)">
-            <label>Aktualny email : ' . $_SESSION["edit_data"]["user_email"] . '
+            <input type="email" name="email" value="' . $_SESSION["edit_data"]["user_email"] . '">
         </div>
         ';
 
         echo '
         <div class="label-input">
             <label for="username">Nazwa:</label>
-            <input type="text" name="username" placeholder="Nazwa(Wypełnij by zmienić!)"">
-            <label>Aktualna nazwa : ' . $_SESSION["edit_data"]["user_name"] . '
+            <input type="text" name="username" value="' . $_SESSION["edit_data"]["user_name"] . '">
         </div>    
         ';
         echo '

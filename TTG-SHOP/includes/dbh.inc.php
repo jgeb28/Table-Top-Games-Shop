@@ -1,5 +1,5 @@
-<?php 
-$host = 'docker-php-apache-db-1';
+<?php
+$host = 'table-top-games-shop-db-1';
 $dbname = 'ttg_store_database';
 $dbusername = 'root';
 $bpassword = 'root';

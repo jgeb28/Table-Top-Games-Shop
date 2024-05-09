@@ -4,12 +4,22 @@ require_once '../../includes/profile/profile_emp_view.inc.php';
 
 if (!isset($_SESSION["user_id"]) || $_SESSION["user_group_id"] != 2)
     header("Location: ../../index.php");
+if(!isset($_SESSION["edit_data"]))
+    header("Location: /profile/employee/profile_emp_list_products.php");
 include_once "../../header.php";
 ?>
 
 <main class="main">
     <div class="container-profile">
         <div id="profile-panel" class="profile-panel">
+            <h4>Edytuj Produkt</h4>
+            <form action="/includes/profile/profile_emp.inc.php" method="post" enctype="multipart/form-data">
+                <div class="input-wraper">
+                    <?php adding_prod_edit_inputs() ?>
+                </div>
+                <button type="submit" name="prod_edit_submit">Edytuj</button>
+            </form>
+            <?php check_product_adding_errors() ?>
         </div>
         <div class="profile-panel-menu">
             <ul>

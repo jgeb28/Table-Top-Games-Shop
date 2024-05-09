@@ -10,18 +10,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         //ERROR HANDLERS
         $errors = [];
 
-        if(is_input_empty($username, $pwd)) {
+        if (is_input_empty($username, $pwd)) {
             $errors["empty_input"] = "Zapełnij wszystkie pola";
         }
 
         $result = get_user($pdo, $username);
 
-        if(does_username_exist($result)) {
+        if (does_username_exist($result)) {
             $errors["username_wrong"] = "Podana nazwa użytkownika nie istnieje";
         }
 
-        if(!does_username_exist($result) && is_password_wrong($pwd, $result["user_pwd"])) {
-            $errors["password_wrong"] = "Niepoprawne hasło"; 
+        if (!does_username_exist($result) && is_password_wrong($pwd, $result["user_pwd"])) {
+            $errors["password_wrong"] = "Niepoprawne hasło";
         }
 
 
@@ -38,15 +38,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $sessionId = $newSessionId . "_" . $result["user_id"];
         session_id($sessionId);
         session_start();
-        
+
         $_SESSION["user_id"] = $result["user_id"];
         $_SESSION["user_name"] = htmlspecialchars($result["user_name"]);
         $_SESSION["user_group_id"] = $result["group_id"];
         $_SESSION["last_regeneration"] = time();
 
-        if($result["group_id"] == 3)
+        if ($result["group_id"] == 3)
             header("Location: /profile/admin/profile_admin.php");
-        else if($result["group_id"] == 2)
+        else if ($result["group_id"] == 2)
             header("Location: /profile/employee/profile_employee.php");
         else
             header("Location: /profile/user/profile_user.php");
@@ -54,12 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt = null;
 
         die();
-
-    } catch ( PDOException $e) {
+    } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
     }
-
-
 } else {
     header("Location: /login.php");
     die();
