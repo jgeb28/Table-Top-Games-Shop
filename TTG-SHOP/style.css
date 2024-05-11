@@ -159,7 +159,7 @@ body {
 }
 
 
-/* -------------------------------------------------------------------------*/
+/* -------------------------------index panel------------------------------------------*/
 .categories {
     margin: auto;
     max-width: 1170px;
@@ -208,6 +208,110 @@ body {
     cursor: pointer;
 }
 }
+
+.prod-section {
+    margin-bottom: 30px;
+}
+.prod-section h4 {
+    font-size: 18px;
+    text-transform: capitalize;
+    margin-bottom:  10px;
+    font-weight: 500;
+    padding: 5px 20px;
+    border-bottom: 2px solid hsl(264, 55%, 40%);
+}
+
+.prod-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.prod-container button {
+    background-color: hsl(264, 55%, 40%);
+    color:white;
+    border-radius: 15px;
+    padding: 2px 5px ;
+    border: none;
+}
+
+.prod-desc span {
+    font-size: 14px;
+}
+
+/*---------------------------product-page----------------------------*/
+
+.product-details {
+    display: flex;
+    margin-top: 20px;
+    padding: 5px 20px;
+    border-bottom: 2px solid hsl(264, 55%, 40%);
+    margin-bottom: 30px;
+}
+
+.single-prod-details {
+    padding-top: 30px;
+    width: 50%;
+
+}
+
+.single-prod-details h4{
+    padding: 30px 0 20px 0;
+}
+
+.single-prod-details h3{
+    padding: 10px 0 20px 0;
+    font-size: 26px;
+}
+.single-prod-details h6{
+    padding: 30px 0 5px 0;
+}
+.single-prod-details input{
+    width: 50px;
+    height: 45px;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.single-prod-details button{
+    background-color: hsl(264, 55%, 40%);
+    color:white;
+    border-radius: 15px;
+    padding: 12px;
+    border: none;
+}
+.single-prod-details .price{
+    display: flex;
+    align-items: flex-end;
+}
+.single-prod-details span{
+    padding-bottom: 2px;    
+}
+
+.product-specs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.label-specs {
+    display: flex;
+    margin-bottom: 5px;
+    border: none;
+    padding: 5px;
+}
+
+.label-specs label{
+    font-size: 12px;
+}
+
+.label-specs span{
+    margin-left: 20px;
+    font-size: 12px;
+}
+
+
 /* --------------------------footer---------------------------------*/
 .footer {
     margin: auto;
@@ -414,6 +518,8 @@ body {
 .label-input select {
     border-radius: 5px;
     background-color: hsl(0, 0%, 100%);
+    height: 20px;
+    width: 100px;
 }
 
 .label-input label {
@@ -427,6 +533,12 @@ body {
     background-color: hsl(0, 0%, 100%);
     width: 250px;
 }
+
+.label-input .number {
+    height: 20px;
+    width: 60px;
+}
+
 
 #edit-paragraph {
     font-size: 8px;
