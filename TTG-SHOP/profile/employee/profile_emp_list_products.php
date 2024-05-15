@@ -22,11 +22,12 @@ include_once "../../header.php";
                 </div>
                 <table id="prod-table">
                     <tr id="tr-th">
-                        <th onclick="sortTable('prod-table',0,this)">Prod_ID</th>
-                        <th onclick="sortTable('prod-table',1,this)">Prod_Name</th>
-                        <th onclick="sortTable('prod-table',2,this)">Prod_Cat</th>
-                        <th onclick="sortTable('prod-table',3,this)">Prod_Qty</th>
-                        <th onclick="sortTable('prod-table',4,this)">Prod_Price</th>
+                        <th onclick="sortTable('prod-table',0,this)">ID</th>
+                        <th onclick="sortTable('prod-table',1,this)">Name</th>
+                        <th onclick="sortTable('prod-table',2,this)">Cat</th>
+                        <th onclick="sortTable('prod-table',3,this)">Qty</th>
+                        <th onclick="sortTable('prod-table',4,this)">Price</th>
+                        <th onclick="sortTable('prod-table',5,this)">Brand</th>
                         <th></th>
                         <th></th>
                     </tr>

@@ -42,6 +42,11 @@ CREATE TABLE IF NOT EXISTS products (
     product_quantity INT NOT NULL,
     product_description VARCHAR(400) NOT NULL,
     category_id INT NOT NULL,
+    product_brand VARCHAR(40) NOT NULL,
+    product_age_class INT(2), 
+    product_players_min INT(2),
+    product_players_max INT(2),
+    product_language VARCHAR(40),
     FOREIGN KEY(category_id) REFERENCES CATEGORIES(category_id)
 );
 
@@ -51,3 +56,8 @@ CREATE TABLE IF NOT EXISTS products_images (
     FOREIGN KEY(product_id) REFERENCES products(product_id),
     FOREIGN KEY(image_id) REFERENCES images(image_id)
 );
+
+INSERT INTO users (user_name, user_email, user_pwd, group_id )  
+VALUES ('admin','admin@admin.com','$2y$12$C.CMn3HQqba.CZ4mlM6bse.FelEBqo48qm/3eRZDvgcWyY2t.12TC', 3) , 
+('emp','emp@emp.com', '$2y$12$XO4L7bryYWzi3e/s75ANh.KPDy18B.1KzpxR9I6sV6WCcviX2CV1C', 2),
+('user', 'user@user.com', '$2y$12$EGoz.sVY0M2ETyLbF0sgFOBHI0lpgNaL2rIGLuo/gk5P8R1rPks1y', 1);

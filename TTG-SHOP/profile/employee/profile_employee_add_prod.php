@@ -18,6 +18,10 @@ include_once "../../header.php";
                         <input type="text" name="product">
                     </div>
                     <div class="label-input">
+                        <label for="brand">Marka Produktu:</label>
+                        <input type="text" name="brand">
+                    </div>
+                    <div class="label-input">
                         <label for="category">Kategoria:</label>
                         <select name="category">
                             <option value="1">karciane</option>
@@ -30,20 +34,37 @@ include_once "../../header.php";
                         </select>
                     </div>
                     <div class="label-input">
-                        <label for="icon">Miniaturka:</label>
+                        <label for="icon">Miniaturka(290x270):</label>
                         <input type="file" name="icon">
                     </div>
                     <div class="label-input">
-                        <label for="image">Szczegółowe zdjęcie:</label>
+                        <label for="image">Szczegółowe zdjęcie(440x450):</label>
                         <input type="file" name="image">
                     </div>
                     <div class="label-input">
                         <label for="price">Cena produktu:</label>
-                        <input type="number" name="price" step="0.01" min="0">
+                        <input class="number" type="number" name="price" step="0.01" min="0">
                     </div>
                     <div class="label-input">
-                        <label for="ilość produktów">Ilość sztuk produktu:</label>
-                        <input type="number" name="quantity" min="1">
+                        <label for="quantity">Ilość sztuk produktu:</label>
+                        <input class="number" type="number" name="quantity" min="1">
+                    </div>
+                    <div class="label-input">
+                        <label for="age_class">*Produkt dozwolony od lat:</label>
+                        <input class="number" type="number" name="age_class" min="1" >
+                    </div>
+                    <div class="label-input">
+                        <label for="players_number">*Liczba graczy od:</label>
+                        <input class="number" type="number" name="players_min" min="1" >
+                        <label>do:</label>
+                        <input class="number" type="number" name="players_max" min="1" >
+                    </div>
+                    <div class="label-input">
+                        <label for="language">*Wersja Językowa:</label>
+                        <input type="text" name="language">
+                    </div>
+                    <div class="label-input">
+                        <span>* - Pola Opcjonalne</span>
                     </div>
                     <textarea name="description" rows=15 cols=50 maxlength=500 placeholder="Opis"></textarea>
                 </div>

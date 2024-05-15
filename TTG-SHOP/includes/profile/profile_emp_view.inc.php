@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 function check_product_adding_errors() {
+
    if(isset($_SESSION["errors_adding_product"])) {
         $errors = $_SESSION["errors_adding_product"];
 
@@ -20,12 +21,17 @@ function check_product_adding_errors() {
 }
 
 function adding_prod_edit_inputs() {
+
     if (isset($_SESSION["edit_data"])) {
         echo '
         <input type="hidden"  name="product_id" value="' . $_SESSION["edit_data"]["product_id"] . '">
         <div class="label-input">
             <label for="product">Nazwa Produktu:</label>
             <input type="text" name="product" value="' . $_SESSION["edit_data"]["product_name"] . '">
+        </div>
+        <div class="label-input">
+            <label for="brand">Marka Produktu:</label>
+            <input type="text" name="brand"value="' . $_SESSION["edit_data"]["product_brand"] . '">
         </div>
         <div class="label-input">
             <label for="category">Kategoria:</label>
@@ -40,11 +46,11 @@ function adding_prod_edit_inputs() {
             </select>
         </div>
         <div class="label-input">
-            <label for="icon">Miniaturka:</label>
+            <label for="icon">Miniaturka(290x270):</label>
             <input type="file" name="icon">
         </div>
         <div class="label-input">
-            <label for="image">Szczegółowe zdjęcie:</label>
+            <label for="image">Szczegółowe zdjęcie(440x450):</label>
             <input type="file" name="image">
         </div>
         <p id="edit-paragraph">*dodaj dwa obrazy by zmienić</p>
@@ -56,6 +62,23 @@ function adding_prod_edit_inputs() {
             <label for="ilość produktów">Ilość sztuk produktu:</label>
             <input type="number" name="quantity" min="1" value="' . $_SESSION["edit_data"]["product_quantity"] . '">
         </div>
+        <div class="label-input">
+            <label for="age_class">*Produkt dozwolony od lat:</label>
+            <input class="number" type="number" name="age_class" min="1" value="' . $_SESSION["edit_data"]["product_age_class"] . '">
+        </div>
+        <div class="label-input">
+            <label for="players_number">*Liczba graczy od:</label>
+            <input class="number" type="number" name="players_min" min="1" value="' . $_SESSION["edit_data"]["product_players_min"] . '">
+            <label>do:</label>
+            <input class="number" type="number" name="players_max" min="1" value="' . $_SESSION["edit_data"]["product_players_max"] . '">
+        </div>
+        <div class="label-input">
+            <label for="language">*Wersja Językowa:</label>
+            <input type="text" name="language" value="' . $_SESSION["edit_data"]["product_language"] . '">
+        </div>
+        <div class="label-input">
+            <span>* - Pola Opcjonalne</span>
+        </div>
         <textarea name="description" rows=15 cols=50 maxlength=500 placeholder="Opis">' . $_SESSION["edit_data"]["product_description"] . '</textarea>
         ';
         unset($_SESSION["edit_data"]);
@@ -63,7 +86,9 @@ function adding_prod_edit_inputs() {
 }
 
 function display_products() {
+
      if(isset($_SESSION["products_list"])) {
+
          $results = $_SESSION["products_list"];
          foreach($results as $result){
              $product_id = $result["product_id"];
@@ -71,6 +96,8 @@ function display_products() {
              $category_name = $result["category_name"];
              $product_quantity = $result["product_quantity"];
              $product_price = $result["product_price"];
+             $product_brand = $result["product_brand"];
+             $product_page = "/product_page.php?product=$product_id";
              echo '
              <tr>
              <form action="/includes/profile/profile_emp.inc.php" method="post">
@@ -78,10 +105,11 @@ function display_products() {
              ';
              echo "
                  <td>$product_id</td>
-                 <td>$product_name</td>
+                 <td><a href="; echo'"';echo "$product_page"; echo'"'; echo">$product_name</a></td>
                  <td>$category_name</td>
                  <td>$product_quantity szt.</td>
                  <td>$product_price PLN</td>
+                 <td>$product_brand</td>
              ";
              echo '
                  <td>
@@ -99,6 +127,7 @@ function display_products() {
  }
 
  function display_success() {
+    
      if(isset($_GET["deleting"]) && $_GET["deleting"] === "success") {
          echo '<br>';
          echo '<p class = "form-success">Pomyślnie usunięto produkt!</p>';

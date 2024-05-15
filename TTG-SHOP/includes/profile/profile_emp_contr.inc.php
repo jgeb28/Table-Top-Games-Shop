@@ -10,9 +10,10 @@ function is_input_empty(
     string $price,
     string $description,
     string $quantity,
+    string $brand,
 ) {
     if (
-        empty($product)  || empty($category) || empty($price) || empty($description) || empty($quantity) 
+        empty($product)  || empty($category) || empty($price) || empty($description) || empty($quantity) || empty($brand) 
     ) {
         return true;
     } else {
@@ -60,7 +61,7 @@ function file_errors(array $file)
         $errors["size_wrong_$fileName"] = "Podano za duży plik -> $fileName";
     }
 
-    $allowed = array('jpg', 'jpeg', 'png');
+    $allowed = array('jpg', 'jpeg', 'png', 'webp');
     $filePreExt = explode('.', $fileName);
     $fileExt = strtolower((end($filePreExt)));
 
@@ -69,6 +70,15 @@ function file_errors(array $file)
     }
 
     return $errors;
+}
+
+function check_image_dimensions(array $file, int $width, int $height) {
+
+    list($imgWidth, $imgHeight) = getimagesize($file['tmp_name']);
+    if ($width != $imgWidth && $height != $imgHeight) {
+        return true;
+    }
+    return false;
 }
 
 function is_productname_changed(object $pdo, string $productName, int  $userId) {
@@ -87,6 +97,16 @@ function only_one_image_added(int $iconSize, int $imageSize) {
 
     if ( ($iconSize == 0  && $imageSize != 0) || ($iconSize != 0  && $imageSize == 0)) 
     {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function check_if_two_value_given($playersMin,$playersMax) {
+    if (
+        !empty($playersMin)  &&  !empty($playersMax)
+    ) {
         return true;
     } else {
         return false;
