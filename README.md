@@ -1,1 +1,1 @@
-Internetowy sklep z grami planszowymi
+Online store with tabletop games (in progress)
