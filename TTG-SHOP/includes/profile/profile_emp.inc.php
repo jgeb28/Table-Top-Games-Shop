@@ -43,15 +43,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 } else {
                     if (!empty($errorsfiles = file_errors($icon))) {
                         $errors = array_merge($errors, $errorsfiles);
+                    } else {
+                        if(check_image_dimensions($icon,270,290)) {
+                            $errors["size_wrong_$iconName"] = "Plik ma złe wymiary, wymagane 270x290 -> $iconName";
+                        }
                     }
                     if (!empty($errorsfiles = file_errors($image))) {
                         $errors = array_merge($errors, $errorsfiles);
-                    }
-                    if(check_image_dimensions($icon,270,290)) {
-                        $errors["size_wrong_$iconName"] = "Plik ma złe wymiary, wymagane 270x290 -> $iconName";
-                    }
-                    if(check_image_dimensions($image,440,450)) {
-                        $errors["size_wrong_$imageName"] = "Plik ma złe wymiary, wymagane 440x450 -> $imageName";
+                    } else {
+                        if(check_image_dimensions($image,440,450)) {
+                            $errors["size_wrong_$imageName"] = "Plik ma złe wymiary, wymagane 440x450 -> $imageName";
+                        }
                     }
                 }
             }
@@ -236,16 +238,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 if (!empty($errorsfiles = file_errors($icon))) {
                     $errors = array_merge($errors, $errorsfiles);
+                } else {
+                    if(check_image_dimensions($icon,270,290)) {
+                        $errors["size_wrong_$iconName"] = "Plik ma złe wymiary, wymagane 270x290 -> $iconName";
+                    }
                 }
                 if (!empty($errorsfiles = file_errors($image))) {
                     $errors = array_merge($errors, $errorsfiles);
+                } else {
+                    if(check_image_dimensions($image,440,450)) {
+                        $errors["size_wrong_$imageName"] = "Plik ma złe wymiary, wymagane 440x450 -> $imageName";
+                    }
                 }
-                if(check_image_dimensions($icon,270,290)) {
-                    $errors["size_wrong_$iconName"] = "Plik ma złe wymiary, wymagane 270x290 -> $iconName";
-                }
-                if(check_image_dimensions($image,440,450)) {
-                    $errors["size_wrong_$imageName"] = "Plik ma złe wymiary, wymagane 440x450 -> $imageName";
-                }
+                
                 if (does_product_exist($pdo, $product)) {
                     $errors["productname_wrong"] = "Podana nazwa produktu jest już zajęta";
                 }

@@ -8,13 +8,13 @@ include_once "header.php";
     <div class="categories">
         <ul>
             <div class="elements">
-                <li><a>Karciane</a></li>
-                <li><a>Logiczne</a></li>
-                <li><a>Przygodowe</a></li>
-                <li><a>Rodzinne</a></li>
-                <li><a>Strategiczne</a></li>
-                <li><a>Imprezowe</a></li>
-                <li><a id="accessories">Akcesoria</a></li>
+            <li><a href="product_search.php?category=1">Karciane</a></li>
+                <li><a href="product_search.php?category=2">Logiczne</a></li>
+                <li><a href="product_search.php?category=3">Przygodowe</a></li>
+                <li><a href="product_search.php?category=4">Rodzinne</a></li>
+                <li><a href="product_search.php?category=5">Strategiczne</a></li>
+                <li><a href="product_search.php?category=6">Imprezowe</a></li>
+                <li><a href="product_search.php?category=7">Akcesoria</a></li>
             </div>
         </ul>
     <div>

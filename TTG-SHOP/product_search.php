@@ -1,7 +1,7 @@
 <?php
 require_once 'includes/config_session.inc.php';
-require_once 'includes/product/display_products_new.inc.php';
-require_once 'includes/product/product_view.inc.php';
+require_once 'includes/product/product_search.inc.php';
+include_once 'includes/product/product_view.inc.php';
 include_once "header.php";
 ?>
 <main class="main">
@@ -19,11 +19,7 @@ include_once "header.php";
         </ul>
     <div>
     <div class="prod-section">
-        <h4>Polecane</h4>
-    </div>
-    <div class="prod-section">
-        <h4>Nowości</h4>
-        <?php display_new_products(); ?>
+        <?php display_searched_products(); ?>
     </div>
 </main>
 <?php include_once "footer.php"; ?>

@@ -32,15 +32,16 @@ INSERT INTO categories (category_name) VALUES ('akcesoria');
 CREATE TABLE IF NOT EXISTS images (
     image_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     image_name VARCHAR(30) NOT NULL,
-    image_destination VARCHAR(300) NOT NULL
+    image_destination VARCHAR(300) NOT NULL,
+    image_type VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS products (
     product_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    product_name VARCHAR(40) NOT NULL,
+    product_name VARCHAR(100) NOT NULL,
     product_price FLOAT NOT NULL,
     product_quantity INT NOT NULL,
-    product_description VARCHAR(400) NOT NULL,
+    product_description VARCHAR(1000) NOT NULL,
     category_id INT NOT NULL,
     product_brand VARCHAR(40) NOT NULL,
     product_age_class INT(2), 

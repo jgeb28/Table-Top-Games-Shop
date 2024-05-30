@@ -27,11 +27,11 @@ function adding_prod_edit_inputs() {
         <input type="hidden"  name="product_id" value="' . $_SESSION["edit_data"]["product_id"] . '">
         <div class="label-input">
             <label for="product">Nazwa Produktu:</label>
-            <input type="text" name="product" value="' . $_SESSION["edit_data"]["product_name"] . '">
+            <input maxlength=100 type="text" name="product" value="' . $_SESSION["edit_data"]["product_name"] . '">
         </div>
         <div class="label-input">
             <label for="brand">Marka Produktu:</label>
-            <input type="text" name="brand"value="' . $_SESSION["edit_data"]["product_brand"] . '">
+            <input maxlength=40 type="text" name="brand"value="' . $_SESSION["edit_data"]["product_brand"] . '">
         </div>
         <div class="label-input">
             <label for="category">Kategoria:</label>
@@ -60,7 +60,7 @@ function adding_prod_edit_inputs() {
         </div>
         <div class="label-input">
             <label for="ilość produktów">Ilość sztuk produktu:</label>
-            <input type="number" name="quantity" min="1" value="' . $_SESSION["edit_data"]["product_quantity"] . '">
+            <input type="number" name="quantity" min="0" value="' . $_SESSION["edit_data"]["product_quantity"] . '">
         </div>
         <div class="label-input">
             <label for="age_class">*Produkt dozwolony od lat:</label>
@@ -79,7 +79,7 @@ function adding_prod_edit_inputs() {
         <div class="label-input">
             <span>* - Pola Opcjonalne</span>
         </div>
-        <textarea name="description" rows=15 cols=50 maxlength=500 placeholder="Opis">' . $_SESSION["edit_data"]["product_description"] . '</textarea>
+        <textarea name="description" rows=15 cols=50 maxlength=1000 placeholder="Opis">' . $_SESSION["edit_data"]["product_description"] . '</textarea>
         ';
         unset($_SESSION["edit_data"]);
     }

@@ -13,7 +13,7 @@ function is_input_empty(
     string $brand,
 ) {
     if (
-        empty($product)  || empty($category) || empty($price) || empty($description) || empty($quantity) || empty($brand) 
+        empty($product)  || empty($category) || empty($price) || empty($description) || !isset($quantity) || empty($brand) 
     ) {
         return true;
     } else {
@@ -51,24 +51,26 @@ function file_errors(array $file)
     $fileError = $file['error'];
     $fileSize = $file['size'];
 
+    if ($fileSize == 0) {
+        $errors["file_not_given_$fileName"] = "Nie podano pliku/ów";
+    } else {
 
+        if ($fileError != 0) {
+            $errors["uploading_error_$fileName"] = "Wystąpił błąd podczas wysyłania plik -> $fileName";
+        }
 
-    if ($fileError != 0) {
-        $errors["uploading_error_$fileName"] = "Wystąpił błąd podczas wysyłania plik -> $fileName";
+        if ($fileSize > 500000) {
+            $errors["size_wrong_$fileName"] = "Podano za duży plik -> $fileName";
+        }
+
+        $allowed = array('jpg', 'jpeg', 'png', 'webp');
+        $filePreExt = explode('.', $fileName);
+        $fileExt = strtolower((end($filePreExt)));
+
+        if (!in_array($fileExt, $allowed)) {
+            $errors["type_wrong_$fileName"] = "Podano zły typ pliku -> $fileName";
+        }
     }
-
-    if ($fileSize > 500000) {
-        $errors["size_wrong_$fileName"] = "Podano za duży plik -> $fileName";
-    }
-
-    $allowed = array('jpg', 'jpeg', 'png', 'webp');
-    $filePreExt = explode('.', $fileName);
-    $fileExt = strtolower((end($filePreExt)));
-
-    if (!in_array($fileExt, $allowed)) {
-        $errors["type_wrong_$fileName"] = "Podano zły typ pliku -> $fileName";
-    }
-
     return $errors;
 }
 

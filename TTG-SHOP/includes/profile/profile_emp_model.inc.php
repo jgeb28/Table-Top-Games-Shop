@@ -181,11 +181,11 @@ function  create_product(
     $queryValues = $queryValues . ");";
     $queryImage = "
     SET @product_id = LAST_INSERT_ID();
-    INSERT INTO images (image_name, image_destination)
-    VALUES (:image_name, :image_destination);
+    INSERT INTO images (image_name, image_destination, image_type)
+    VALUES (:image_name, :image_destination, 'big');
     SET @image_id = LAST_INSERT_ID();
-    INSERT INTO images (image_name, image_destination)
-    VALUES (:icon_name, :icon_destination);
+    INSERT INTO images (image_name, image_destination, image_type)
+    VALUES (:icon_name, :icon_destination, 'small');
     SET @icon_id = LAST_INSERT_ID();
     INSERT INTO products_images (product_id, image_id) VALUES (@product_id, @image_id), (@product_id, @icon_id);";
     $wholeQuery = $query . $queryValues . $queryImage;
@@ -250,11 +250,11 @@ function change_image(object $pdo,int $productId,string $iconNewName,string $ima
     $result_images = delete_image($pdo, $productId);
 
     
-    $query = "INSERT INTO images (image_name, image_destination)
-    VALUES (:image_name, :image_destination);
+    $query = "INSERT INTO images (image_name, image_destination, image_type)
+    VALUES (:image_name, :image_destination, 'big');
     SET @image_id = LAST_INSERT_ID();
-    INSERT INTO images (image_name, image_destination)
-    VALUES (:icon_name, :icon_destination);
+    INSERT INTO images (image_name, image_destination, image_type)
+    VALUES (:icon_name, :icon_destination, 'small');
     SET @icon_id = LAST_INSERT_ID();
     INSERT INTO products_images (product_id, image_id) VALUES (:product_id, @image_id), (:product_id, @icon_id);";
     $stmt = $pdo->prepare($query);

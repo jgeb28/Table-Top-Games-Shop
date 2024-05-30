@@ -15,11 +15,11 @@ include_once "../../header.php";
                 <div class="input-wraper">
                     <div class="label-input">
                         <label for="product">Nazwa Produktu:</label>
-                        <input type="text" name="product">
+                        <input type="text" maxlength=100 name="product">
                     </div>
                     <div class="label-input">
                         <label for="brand">Marka Produktu:</label>
-                        <input type="text" name="brand">
+                        <input type="text" maxlength=40 name="brand">
                     </div>
                     <div class="label-input">
                         <label for="category">Kategoria:</label>
@@ -47,7 +47,7 @@ include_once "../../header.php";
                     </div>
                     <div class="label-input">
                         <label for="quantity">Ilość sztuk produktu:</label>
-                        <input class="number" type="number" name="quantity" min="1">
+                        <input class="number" type="number" name="quantity" min="0">
                     </div>
                     <div class="label-input">
                         <label for="age_class">*Produkt dozwolony od lat:</label>
@@ -66,7 +66,7 @@ include_once "../../header.php";
                     <div class="label-input">
                         <span>* - Pola Opcjonalne</span>
                     </div>
-                    <textarea name="description" rows=15 cols=50 maxlength=500 placeholder="Opis"></textarea>
+                    <textarea name="description" rows=15 cols=50 maxlength=1000 placeholder="Opis"></textarea>
                 </div>
                 <button type="submit" name="prod_submit">Dodaj</button>
             </form>
