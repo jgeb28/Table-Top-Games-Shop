@@ -34,7 +34,7 @@ include_once "../../header.php";
                         </select>
                     </div>
                     <div class="label-input">
-                        <label for="icon">Miniaturka(290x270):</label>
+                        <label for="icon">Miniaturka(270x290):</label>
                         <input type="file" name="icon">
                     </div>
                     <div class="label-input">

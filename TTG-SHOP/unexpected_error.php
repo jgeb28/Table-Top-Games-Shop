@@ -17,7 +17,9 @@ include_once "header.php";
             </div>
         </ul>
     </div>
-    <h4>Wystąpił Nieoczekiwany Błąd</h4>
-    <?php display_unexpected_error(); ?>
+    <div class="error-container">
+        <h4>Wystąpił Nieoczekiwany Błąd</h4>
+        <?php display_unexpected_error(); ?>
+    </div>
 </main>
 <?php include_once "footer.php"; ?>

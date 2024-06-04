@@ -28,7 +28,7 @@ function display_product_details() {
                 else {
                 echo '
                 <form action="includes/product/cart.inc.php" method="post">
-                    <input type="number" name="quantity" value="1" min="1" max="99">
+                    <input type="number" name="quantity" value="1" min="1" max="' . $result["product_quantity"] . '">
                     <input type="hidden" name="productId" value="' . $result["product_id"] . '">
                     <button type=submit" name="addToCart">Dodaj do koszyka</button>
                 </form>

@@ -13,8 +13,8 @@
             <h4>Konto</h4>
             <ul>
                 <li><a href="/sign_up.php">Zarejestruj się</a></li>
-                <li><a href="#">Koszyk</a></li>
-                <li><a href="#">Historia transakcji</a></li>
+                <li><a href="/cart.php">Koszyk</a></li>
+                <li><a href="/profile/user/profile_user.php">Historia transakcji</a></li>
             </ul>
         </div>
         <div class="footer-col">

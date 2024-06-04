@@ -16,7 +16,7 @@ function check_product_adding_errors() {
         unset($_SESSION["errors_adding_product"]);
    } else if(isset($_GET["addingprod"]) && $_GET["addingprod"] === "success") {
         echo '<br>';
-        echo '<p class = "form-success">Dodano Produkt pomyślnie!</p>';
+        echo '<p class = "form-success">Pomyślnie dodano produkt!</p>';
    }
 }
 
@@ -46,7 +46,7 @@ function adding_prod_edit_inputs() {
             </select>
         </div>
         <div class="label-input">
-            <label for="icon">Miniaturka(290x270):</label>
+            <label for="icon">Miniaturka(270x290):</label>
             <input type="file" name="icon">
         </div>
         <div class="label-input">
