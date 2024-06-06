@@ -14,7 +14,7 @@ include_once "../../header.php";
         <div class="profile-panel-menu">
             <ul>
                 <li><a href="profile_emp_list_products.php"><button>Lista Produktów</button></a></li>
-                <li><button>Lista Zamówień</button></li>
+                <li><a href="profile_emp_list_orders.php"><button>Lista Zamówień</button></a></li>
                 <li><a href="profile_employee_add_prod.php"><button>Dodaj Produkt</button></a></li>
                 <li>
                     <form action="/includes/profile/logout.inc.php" method="post">

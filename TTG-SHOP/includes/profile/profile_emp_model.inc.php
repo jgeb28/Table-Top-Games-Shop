@@ -181,11 +181,11 @@ function  create_product(
     $queryValues = $queryValues . ");";
     $queryImage = "
     SET @product_id = LAST_INSERT_ID();
-    INSERT INTO images (image_name, image_destination)
-    VALUES (:image_name, :image_destination);
+    INSERT INTO images (image_name, image_destination, image_type)
+    VALUES (:image_name, :image_destination, 'big');
     SET @image_id = LAST_INSERT_ID();
-    INSERT INTO images (image_name, image_destination)
-    VALUES (:icon_name, :icon_destination);
+    INSERT INTO images (image_name, image_destination, image_type)
+    VALUES (:icon_name, :icon_destination, 'small');
     SET @icon_id = LAST_INSERT_ID();
     INSERT INTO products_images (product_id, image_id) VALUES (@product_id, @image_id), (@product_id, @icon_id);";
     $wholeQuery = $query . $queryValues . $queryImage;
@@ -250,11 +250,11 @@ function change_image(object $pdo,int $productId,string $iconNewName,string $ima
     $result_images = delete_image($pdo, $productId);
 
     
-    $query = "INSERT INTO images (image_name, image_destination)
-    VALUES (:image_name, :image_destination);
+    $query = "INSERT INTO images (image_name, image_destination, image_type)
+    VALUES (:image_name, :image_destination, 'big');
     SET @image_id = LAST_INSERT_ID();
-    INSERT INTO images (image_name, image_destination)
-    VALUES (:icon_name, :icon_destination);
+    INSERT INTO images (image_name, image_destination, image_type)
+    VALUES (:icon_name, :icon_destination, 'small');
     SET @icon_id = LAST_INSERT_ID();
     INSERT INTO products_images (product_id, image_id) VALUES (:product_id, @image_id), (:product_id, @icon_id);";
     $stmt = $pdo->prepare($query);
@@ -267,4 +267,42 @@ function change_image(object $pdo,int $productId,string $iconNewName,string $ima
     $stmt->execute();
 
     return $result_images;
+}
+
+function get_orders($pdo) {
+    
+    $query = "SELECT order_id, order_email, order_payment, order_shipping, order_date, order_status
+    FROM orders";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function delete_order(object $pdo, string $orderId)
+{
+    $query = "DELETE FROM orders WHERE order_id = :order_id";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":order_id", $orderId);
+    $stmt->execute();
+}
+
+function change_order_status(object $pdo, string $orderId, string $status)
+{
+    $query = "UPDATE ORDERS SET order_status = :order_status WHERE order_id = :order_id";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":order_id", $orderId);
+    $stmt->bindParam(":order_status", $status);
+    $stmt->execute();
+}
+
+function get_order(object $pdo, int $orderId) {
+    $query = "SELECT *
+    FROM orders
+    WHERE orders.order_id = :order_id;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':order_id', $orderId);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
 }

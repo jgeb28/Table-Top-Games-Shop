@@ -14,15 +14,15 @@ include_once "../../header.php";
             <form action="/includes/profile/profile_emp.inc.php" method="post" enctype="multipart/form-data">
                 <div class="input-wraper">
                     <div class="label-input">
-                        <label for="product">Nazwa Produktu:</label>
-                        <input type="text" name="product">
+                        <label for="product">*Nazwa Produktu:</label>
+                        <input type="text" maxlength=100 name="product">
                     </div>
                     <div class="label-input">
-                        <label for="brand">Marka Produktu:</label>
-                        <input type="text" name="brand">
+                        <label for="brand">*Marka Produktu:</label>
+                        <input type="text" maxlength=40 name="brand">
                     </div>
                     <div class="label-input">
-                        <label for="category">Kategoria:</label>
+                        <label for="category">*Kategoria:</label>
                         <select name="category">
                             <option value="1">karciane</option>
                             <option value="2">logiczne</option>
@@ -34,39 +34,40 @@ include_once "../../header.php";
                         </select>
                     </div>
                     <div class="label-input">
-                        <label for="icon">Miniaturka(290x270):</label>
+                        <label for="icon">*Miniaturka(270x290):</label>
                         <input type="file" name="icon">
                     </div>
                     <div class="label-input">
-                        <label for="image">Szczegółowe zdjęcie(440x450):</label>
+                        <label for="image">*Szczegółowe zdjęcie(440x450):</label>
                         <input type="file" name="image">
                     </div>
                     <div class="label-input">
-                        <label for="price">Cena produktu:</label>
+                        <label for="price">*Cena produktu:</label>
                         <input class="number" type="number" name="price" step="0.01" min="0">
                     </div>
                     <div class="label-input">
-                        <label for="quantity">Ilość sztuk produktu:</label>
-                        <input class="number" type="number" name="quantity" min="1">
+                        <label for="quantity">*Ilość sztuk produktu:</label>
+                        <input class="number" type="number" name="quantity" min="0">
                     </div>
                     <div class="label-input">
-                        <label for="age_class">*Produkt dozwolony od lat:</label>
+                        <label for="age_class">Produkt dozwolony od lat:</label>
                         <input class="number" type="number" name="age_class" min="1" >
                     </div>
                     <div class="label-input">
-                        <label for="players_number">*Liczba graczy od:</label>
+                        <label for="players_number">Liczba graczy od:</label>
                         <input class="number" type="number" name="players_min" min="1" >
                         <label>do:</label>
                         <input class="number" type="number" name="players_max" min="1" >
                     </div>
                     <div class="label-input">
-                        <label for="language">*Wersja Językowa:</label>
+                        <label for="language">Wersja Językowa:</label>
                         <input type="text" name="language">
                     </div>
                     <div class="label-input">
-                        <span>* - Pola Opcjonalne</span>
+                        <label>*Opis:</label>
+                        <span>* - Pola Wymagane</span>
                     </div>
-                    <textarea name="description" rows=15 cols=50 maxlength=500 placeholder="Opis"></textarea>
+                    <textarea name="description" rows=15 cols=50 maxlength=1000 placeholder="*Opis"></textarea>
                 </div>
                 <button type="submit" name="prod_submit">Dodaj</button>
             </form>
@@ -75,7 +76,7 @@ include_once "../../header.php";
         <div class="profile-panel-menu">
             <ul>
                 <li><a href="profile_emp_list_products.php"><button>Lista Produktów</button></a></li>
-                <li><button>Lista Zamówień</button></li>
+                <li><a href="profile_emp_list_orders.php"><button>Lista Zamówień</button></a></li>
                 <li><a href="profile_employee_add_prod.php"><button>Dodaj Produkt</button></a></li>
                 <li>
                     <form action="/includes/profile/logout.inc.php" method="post">

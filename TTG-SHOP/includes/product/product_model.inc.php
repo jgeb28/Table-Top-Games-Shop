@@ -29,3 +29,68 @@ function get_product_images(object $pdo, int $productId) {
 
     return $result;
 }
+
+function get_product_by_category(object $pdo, string $category, ?string $sort) {
+    $query = "SELECT p.product_name, p.product_id, p.product_price, p.product_brand, p.product_quantity, i.image_destination
+    FROM products p
+    JOIN products_images pi ON p.product_id = pi.product_id
+    JOIN images i ON pi.image_id = i.image_id
+    WHERE p.category_id = :category_id AND i.image_type = 'small'";
+    if($sort != null) {
+        $query = $query . $sort;
+    }
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':category_id', $category);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function get_product_by_name(object $pdo,string $name, ?string $sort) {
+    $query = "SELECT p.product_name, p.product_id, p.product_price, p.product_brand, p.product_quantity, i.image_destination
+    FROM products p
+    JOIN products_images pi ON p.product_id = pi.product_id
+    JOIN images i ON pi.image_id = i.image_id
+    WHERE p.product_name LIKE :name AND i.image_type = 'small'";
+    if($sort != null) {
+        $query = $query . $sort;
+    }
+    $stmt = $pdo->prepare($query);
+    $searchParam = "%$name%";
+    $stmt->bindParam(':name', $searchParam);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function get_product_by_category_and_name(object $pdo, string $category, string $name, ?string $sort) {
+    $query = "SELECT p.product_name, p.product_id, p.product_price, p.product_brand, p.product_quantity, i.image_destination
+    FROM products p
+    JOIN products_images pi ON p.product_id = pi.product_id
+    JOIN images i ON pi.image_id = i.image_id
+    WHERE p.product_name LIKE :name AND i.image_type = 'small' AND p.category_id = :category_id";
+    if($sort != null) {
+        $query = $query . $sort;
+    }
+    $stmt = $pdo->prepare($query);
+    $searchParam = "%$name%";
+    $stmt->bindParam(':name', $searchParam);
+    $stmt->bindParam(':category_id', $category);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function get_new_products(object $pdo) {
+    $query = "SELECT p.product_name, p.product_id, p.product_price, p.product_brand, p.product_quantity, i.image_destination
+    FROM products p
+    JOIN products_images pi ON p.product_id = pi.product_id
+    JOIN images i ON pi.image_id = i.image_id
+    WHERE i.image_type = 'small'
+    ORDER BY p.product_id DESC
+    LIMIT 20;";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}

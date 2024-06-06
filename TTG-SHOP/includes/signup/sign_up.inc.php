@@ -17,15 +17,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (is_input_empty($username, $pwd, $email)) {
             $errors["empty_input"] = "Zapełnij wszystkie pola";
-        }
-        if (is_email_invalid($email)) {
-            $errors["invalid_email"] = "Niepoprawny adres e-mail";
-        }
-        if (is_username_taken($pdo, $username)) {
-            $errors["username_taken"] = "Podana nazwa użytkownika jest już zajęta";
-        }
-        if (is_email_taken($pdo, $email)) {
-            $errors["email_taken"] = "Podany e-mail jest już zarejestrowany";
+        } else {
+            if (is_email_invalid($email)) {
+                $errors["invalid_email"] = "Niepoprawny adres e-mail";
+            }
+            if (is_username_taken($pdo, $username)) {
+                $errors["username_taken"] = "Podana nazwa użytkownika jest już zajęta";
+            }
+            if (is_email_taken($pdo, $email)) {
+                $errors["email_taken"] = "Podany e-mail jest już zarejestrowany";
+            }
         }
 
         require_once '../config_session.inc.php';

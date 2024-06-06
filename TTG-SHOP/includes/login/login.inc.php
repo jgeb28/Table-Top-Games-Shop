@@ -13,15 +13,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (is_input_empty($username, $pwd)) {
             $errors["empty_input"] = "Zapełnij wszystkie pola";
         }
+        else {
 
-        $result = get_user($pdo, $username);
+            $result = get_user($pdo, $username);
 
-        if (does_username_exist($result)) {
-            $errors["username_wrong"] = "Podana nazwa użytkownika nie istnieje";
-        }
+            if (does_username_exist($result)) {
+                $errors["username_wrong"] = "Podana nazwa użytkownika nie istnieje";
+            }
 
-        if (!does_username_exist($result) && is_password_wrong($pwd, $result["user_pwd"])) {
-            $errors["password_wrong"] = "Niepoprawne hasło";
+            if (!does_username_exist($result) && is_password_wrong($pwd, $result["user_pwd"])) {
+                $errors["password_wrong"] = "Niepoprawne hasło";
+            }
         }
 
 

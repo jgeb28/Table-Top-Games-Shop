@@ -12,3 +12,14 @@ function go_to_profile() {
         echo '<li><a id="profile" href="/login.php"><img src="/images/profile.svg"></a></li>';
     }
 }
+
+function cart_quantity() {
+    $quantity = 0;
+    if(isset($_SESSION['cart'])) {
+        $cart = $_SESSION['cart'];
+        foreach($cart as $item) {
+            $quantity += $item;
+        }
+    } 
+    echo "$quantity";
+}
