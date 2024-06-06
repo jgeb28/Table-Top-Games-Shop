@@ -305,6 +305,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             die();
         }
+
+        if (isset($_POST['delete_order'])) {
+
+            $orderId = $_POST["order_id"];
+            $result = delete_order($pdo, $orderId);
+
+            header("Location: /profile/employee/profile_emp_list_orders.php?deleting=success");
+
+            $pdo = null;
+            $stmt = null;
+
+            die();
+        }
+
+        if (isset($_POST['change_order_status'])) {
+
+            $orderId = $_POST["order_id"];
+            $status = $_POST["status"];
+            $result = change_order_status($pdo, $orderId, $status);
+
+            header("Location: /profile/employee/profile_emp_list_orders.php?editing=success");
+
+            $pdo = null;
+            $stmt = null;
+
+            die();
+        }
+
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
     }

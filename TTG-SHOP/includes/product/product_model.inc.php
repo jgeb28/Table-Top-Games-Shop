@@ -81,7 +81,7 @@ function get_product_by_category_and_name(object $pdo, string $category, string 
     return $result;
 }
 
-function get_new_products($pdo) {
+function get_new_products(object $pdo) {
     $query = "SELECT p.product_name, p.product_id, p.product_price, p.product_brand, p.product_quantity, i.image_destination
     FROM products p
     JOIN products_images pi ON p.product_id = pi.product_id

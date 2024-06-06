@@ -40,3 +40,29 @@ function get_cart_data(object $pdo,string $productId) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function get_price(object $pdo, string $productId)
+{
+
+    $query = "SELECT product_price FROM products WHERE product_id = :product_id;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":product_id", $productId);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC); 
+
+    return $result;
+}
+
+function get_name(object $pdo, string $productId)
+{
+
+    $query = "SELECT product_name FROM products WHERE product_id = :product_id;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":product_id", $productId);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC); 
+
+    return $result;
+}

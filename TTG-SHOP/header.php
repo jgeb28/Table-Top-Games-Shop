@@ -16,7 +16,7 @@ require_once 'includes/navbar/navbar_view.inc.php';
     <header class="navbar">
     <form action="product_search.php" method="get">
         <ul>
-            <li id="logo-big" class="logo"><a href="/index.php"><img src="/images/logo2.drawio.svg"></a></li>
+            <li id="logo-big" class="logo"><a href="/index.php"><img src="/images/logobig.png"></a></li>
             <li id="logo-small" class="logo"><a href="/index.php"><img src="/images/logo2.drawio.small.svg"></a></li>
             <li class="search_box">
                 <input type="text" name="name" placeholder="Wyszukiwanie w ...">
@@ -35,14 +35,12 @@ require_once 'includes/navbar/navbar_view.inc.php';
             <div class="elements">
                 <li>
                     <div class="cart-container">
-                        
                         <div class="cart-icon">
                         <a href="/cart.php">
                             <img src="/images/basket.svg">
                             <span class="cart-count"><?php cart_quantity() ?></span>
                         </a>
                         </div>
-                        
                     </div>   
                 </li>
                 <?php go_to_profile() ?>

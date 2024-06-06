@@ -62,3 +62,18 @@ INSERT INTO users (user_name, user_email, user_pwd, group_id )
 VALUES ('admin','admin@admin.com','$2y$12$C.CMn3HQqba.CZ4mlM6bse.FelEBqo48qm/3eRZDvgcWyY2t.12TC', 3) , 
 ('emp','emp@emp.com', '$2y$12$XO4L7bryYWzi3e/s75ANh.KPDy18B.1KzpxR9I6sV6WCcviX2CV1C', 2),
 ('user', 'user@user.com', '$2y$12$EGoz.sVY0M2ETyLbF0sgFOBHI0lpgNaL2rIGLuo/gk5P8R1rPks1y', 1);
+
+CREATE TABLE orders (
+    order_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    order_fullname VARCHAR(100) NOT NULL,
+    order_email VARCHAR(100) NOT NULL,
+    order_date DATE,
+    order_status VARCHAR(100) NOT NULL,
+    user_id INT NULL,
+    order_payment VARCHAR(40) NOT NULL,
+    order_shipping VARCHAR(40) NOT NULL, 
+    order_total_price DECIMAL(10, 2) NOT NULL,
+    orfer_phone INT(9) NULL,
+    order_array JSON NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);

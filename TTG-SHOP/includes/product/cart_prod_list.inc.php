@@ -21,9 +21,6 @@ try {
         }
         $_SESSION['cart_list'] = $resoults;
     }
-    else {
-        header("Location: /index.php");
-    }
 } catch (PDOException $e) {
     die("Querry Failed: " . $e->getMessage());
 }

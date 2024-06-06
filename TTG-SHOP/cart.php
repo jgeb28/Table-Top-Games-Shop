@@ -28,6 +28,7 @@ include_once "header.php";
                     <button type="submit" name="cart_update">Zaktualizuj</button>
                     <button type="submit" name="place_order">Złóż Zamówienie</button>
                 </div>
+                    <?php display_success(); ?>
                 </form>
             </div>
         </div>

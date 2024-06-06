@@ -14,7 +14,6 @@ function display_cart() {
             $total_price = $product_price * $product_quantity;
             echo '
             <tr>
-            <input type="hidden"  name="product_id" value="' . $product_id . '">
             ';
             echo '
                 <td><img src="' . $htmlImage . '" alt=""></td>';
@@ -39,4 +38,16 @@ function display_cart() {
         }
         unset($_SESSION["cart_list"]);
     } 
+}
+
+function display_success() {
+    if(isset($_GET["ordering"]) && $_GET["ordering"] === "success") {
+        echo '<br>';
+        echo '<p class = "form-success">Pomyślnie złożono zamówienie!</p>';
+        unset($_SESSION["order_list"]);
+        unset($_SESSION["order_subtotal"]);
+        unset($_SESSION["order_payment"]);
+        unset($_SESSION["order_shipping"]);
+        unset($_SESSION["cart"]);
+    }
 }
