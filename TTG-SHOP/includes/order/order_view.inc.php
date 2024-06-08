@@ -102,7 +102,7 @@ function display_action() {
         }
         else if ($_GET["action"] == "order") {
                 echo '
-                <div class="order-detail-container">
+                <div class="order-prepare-container">
                         <h4>Zamówienie</h4>
                         <table id="order-table">
                             <tr id="tr-th">
@@ -153,12 +153,14 @@ function display_form() {
                     </div>
                 </div>
                 <button type="submit" id="button-site" name="make_order">Zamów</button>
+                ';
+                check_order_adding_errors();
+                echo '
             </div>
             </form>
             '
             ;
-            check_order_adding_errors();
-            display_success();
+            
         }
     }
 }
