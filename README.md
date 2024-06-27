@@ -29,5 +29,5 @@ The basic website does not have any products, but you can add them in employee p
 3 basic accounts are created in the sql script:\
 Admin with login admin and password admin\
 Emlpoyee with login emp and password emp\
-User with login user and password user\
+User with login user and password user
 
